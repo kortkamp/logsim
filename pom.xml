@@ -71,7 +71,7 @@
                     <manifest>
                         <addClasspath>true</addClasspath>
                         <!-- ATENÇÃO: Altere para o pacote + nome da sua classe Main -->
-                        <mainClass>com.kortkamp.App</mainClass>
+                        <mainClass>com.kortkamp.simlog.App</mainClass>
                     </manifest>
                 </archive>
             </configuration>
