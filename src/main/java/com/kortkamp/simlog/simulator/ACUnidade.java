@@ -9,22 +9,23 @@ import com.kortkamp.simlog.events.Event;
 import com.kortkamp.simlog.events.ExpedicaoEvent;
 import com.kortkamp.simlog.providers.ObjetoIdProvider;
 
-public class ACUnidade extends Unidade{
+public class ACUnidade extends Unidade {
 
     private LocalTime horarioDH;
 
-    
-    public ACUnidade(String nome, Sto sto, LocalTime horarioDH, ObjetoIdProvider objetoIdProvider) {
-        super(nome, sto, objetoIdProvider);
+    public ACUnidade(String nome, Sto sto, LocalTime horarioDH, PlanoExpedicao planoExpedicao,
+            ObjetoIdProvider objetoIdProvider) {
+        super(nome, sto, planoExpedicao, objetoIdProvider);
         this.horarioDH = horarioDH;
     }
 
-    //should run on 00:00
+    // should run on 00:00
     @Override
-    public List<? extends Event> startNewDay() {
-        
-        //agenda expedição
-        LocalDateTime dateTime = this.simulationClock.dateTime().plusHours(this.horarioDH.getHour()).plusMinutes(this.horarioDH.getMinute());
+    public List<? extends Event> scheduleDayEvents() {
+
+        // agenda expedição
+        LocalDateTime dateTime = this.simulationClock.dateTime().plusHours(this.horarioDH.getHour())
+                .plusMinutes(this.horarioDH.getMinute());
         SimTime time = this.simulationClock.toSimTime(dateTime);
         ExpedicaoEvent expedicaoEvent = new ExpedicaoEvent(this.getSto(), time);
         var ret = List.of(expedicaoEvent);

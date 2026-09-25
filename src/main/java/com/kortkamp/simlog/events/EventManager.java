@@ -5,7 +5,22 @@ import java.util.PriorityQueue;
 
 public class EventManager {
 
-    private PriorityQueue<Event> queue = new PriorityQueue<>();
+    public static volatile EventManager instance;
+
+    private PriorityQueue<Event> queue;
+
+    private EventManager() {
+        this.queue = new PriorityQueue<>();
+    }
+
+        // Singleton holder
+    private static class Holder {
+        private static final EventManager INSTANCE = new EventManager();
+    }
+
+    public static EventManager getInstance() {
+        return Holder.INSTANCE;
+    }
 
     public void schedule(Event event) {
         queue.add(event);

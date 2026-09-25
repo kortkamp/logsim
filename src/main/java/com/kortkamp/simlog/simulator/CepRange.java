@@ -5,4 +5,8 @@ public record CepRange(Cep min, Cep max) {
         this(new Cep(min), new Cep(max));
     }
 
+    public boolean isBetween(Cep cep){
+        return cep.value() >= min().value() && cep.value() <= max().value();
+    }
+
 }

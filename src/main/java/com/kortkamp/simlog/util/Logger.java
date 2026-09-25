@@ -1,6 +1,5 @@
 package com.kortkamp.simlog.util;
 
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 import com.kortkamp.simlog.clock.SimulationClock;

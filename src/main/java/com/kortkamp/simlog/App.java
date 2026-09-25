@@ -18,6 +18,6 @@ public class App {
     public static void main(String[] args) {
         System.out.println("Simulador Correios");
         final Simulator engine = new Simulator();
-        engine.run(2);
+        engine.run(5);
     }
 }
