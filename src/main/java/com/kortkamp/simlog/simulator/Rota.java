@@ -52,7 +52,7 @@ public class Rota implements SimulationEntity {
     public boolean permiteEnvio(Sto stoDestino) {
         return paradas
                 .stream()
-                .anyMatch(paradaItem -> paradaItem.stoUnidade().equals(stoDestino));
+                .anyMatch(paradaItem -> paradaItem.stoDestino().equals(stoDestino));
     }
 
     @Override
@@ -61,12 +61,12 @@ public class Rota implements SimulationEntity {
         return this.paradas
                 .stream()
                 .map(item -> new CargaDescargaEvent(
-                        item.stoUnidade(),
+                        item.stoDestino(),
                         this,
                         simulationClock.toSimTime(
                                 simulationClock.dateTime()
                                         .plusHours(this.horarioSaida.getHour()).plusMinutes(this.horarioSaida.getMinute())
-                                        .plusMinutes(((int) (item.tempoPercursoHoras() * 60)))
+                                        // .plusMinutes(((int) (item.tempoPercursoHoras() * 60)))
                                     )))
                 .toList();
 

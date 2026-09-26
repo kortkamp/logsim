@@ -1,6 +1,5 @@
 package com.kortkamp.simlog.simulator;
 
-
-public record RotaItem(Sto stoUnidade, float tempoPercursoHoras) {
+public record RotaItem(Sto stoOrigem, Sto stoDestino, Integer percursoMinutos) {
 
 }

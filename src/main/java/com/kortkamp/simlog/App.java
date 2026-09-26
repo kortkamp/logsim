@@ -1,5 +1,6 @@
 package com.kortkamp.simlog;
 
+import com.kortkamp.simlog.repositories.RotasRepository;
 import com.kortkamp.simlog.simulator.Simulator;
 
 /**
@@ -16,8 +17,11 @@ public class App {
     }
 
     public static void main(String[] args) {
+
+        RotasRepository rotasRepository = new RotasRepository();
+
         System.out.println("Simulador Correios");
-        final Simulator engine = new Simulator();
+        final Simulator engine = new Simulator(rotasRepository);
         engine.run(5);
     }
 }

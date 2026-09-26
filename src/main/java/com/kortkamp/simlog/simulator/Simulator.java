@@ -15,6 +15,7 @@ import com.kortkamp.simlog.events.PostagemEvent;
 import com.kortkamp.simlog.events.PostagemEventsGenerator;
 import com.kortkamp.simlog.providers.ObjetoIdProvider;
 import com.kortkamp.simlog.providers.ObjetoIdProviderInMemory;
+import com.kortkamp.simlog.repositories.RotasRepository;
 
 public class Simulator {
 
@@ -30,7 +31,15 @@ public class Simulator {
 
     private EventManager eventManager;
 
-    public Simulator() {
+    private RotasRepository rotasRepository;
+
+    public RotasRepository getRotasRepository() {
+        return rotasRepository;
+    }
+
+    public Simulator(RotasRepository rotasRepository) {
+
+        this.rotasRepository = rotasRepository;
 
         this.eventManager = EventManager.getInstance();
 
@@ -67,15 +76,17 @@ public class Simulator {
                 planoExpedicaoRJ,
                 objetoIdProvider);
 
-        addUnidade(acAperibe);
+        // addUnidade(acAperibe);
         addUnidade(acItaocara);
         addUnidade(cteBenfica);
 
         Rota rota1 = new Rota(cteBenfica.getSto(), cteBenfica.getSto(), LocalTime.of(2, 0));
-        rota1.addPontoParada(new RotaItem(cteBenfica.getSto(), 0.5f));
-        rota1.addPontoParada(new RotaItem(acAperibe.getSto(), 7.5f));
-        rota1.addPontoParada(new RotaItem(acItaocara.getSto(), 8f));
-        rota1.addPontoParada(new RotaItem(cteBenfica.getSto(), 18f));
+
+        this.rotasRepository.addRotaItem(acItaocara.getSto(), cteBenfica.getSto(), 6*60);
+        // rota1.addPontoParada(new RotaItem(cteBenfica.getSto(), 0.5f));
+        // rota1.addPontoParada(new RotaItem(acAperibe.getSto(), 7.5f));
+        // rota1.addPontoParada(new RotaItem(acItaocara.getSto(), 8f));
+        // rota1.addPontoParada(new RotaItem(cteBenfica.getSto(), 18f));
 
         addRota(rota1);
 

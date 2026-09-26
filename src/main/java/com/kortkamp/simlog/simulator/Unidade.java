@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 import com.kortkamp.simlog.clock.SimulationClock;
 import com.kortkamp.simlog.events.Event;
 import com.kortkamp.simlog.events.EventManager;
+import com.kortkamp.simlog.events.ImportacaoEvent;
 import com.kortkamp.simlog.providers.ObjetoIdProvider;
 import com.kortkamp.simlog.util.Logger;
 
@@ -118,6 +119,8 @@ public abstract class Unidade implements SimulationEntity {
 
         for (Mala mala : malasExpedicao) {
             mala.fechar();
+            RotaItem rotaItem = this.rotasRepository.ge
+            ImportacaoEvent importacaoEvent = new ImportacaoEvent(sto, null, null)
         }
 
     }
